@@ -303,9 +303,9 @@ class SignUpPage extends StatelessWidget {
             margin: EdgeInsets.symmetric(
               horizontal: defaultMargin,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+
+            child: ListView(
+              children: <Widget>[
                 Header(),
                 FullNameInput(),
                 UsernameInput(),
@@ -315,7 +315,7 @@ class SignUpPage extends StatelessWidget {
                 Spacer(),
                 Footer(),
               ],
-            ),
+            )
           ),
         ));
   }
