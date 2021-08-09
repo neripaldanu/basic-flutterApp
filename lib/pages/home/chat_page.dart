@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pringgosadventure/pages/home/chat_tile.dart';
 import 'package:pringgosadventure/theme.dart';
 
 class ChatPage extends StatelessWidget {
@@ -20,8 +21,7 @@ class ChatPage extends StatelessWidget {
         automaticallyImplyLeading: false,
       );
     }
-
-    Widget content() {
+    Widget emtyChat(){
       return Expanded(
         child: Container(
           color: backgroundColor3,
@@ -59,24 +59,43 @@ class ChatPage extends StatelessWidget {
 
                   onPressed: () {},
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 24,
-                    ),
-                    backgroundColor: primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    )
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 24,
+                      ),
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      )
                   ),
                   child: Text('Explore Store',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium,
-                  ),),
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: medium,
+                    ),),
                 ),
               )
             ],
           ),
+        ),
+      );
+
+    }
+
+    Widget content() {
+      return Expanded(
+        child: Container(
+          color: backgroundColor3,
+          width: double.infinity,
+          child: ListView(
+            padding: EdgeInsets.symmetric(
+              horizontal: defaultMargin,
+            ),
+            children: [
+              ChatTile(),
+
+            ],
+          )
         ),
       );
     }
