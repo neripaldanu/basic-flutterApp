@@ -5,7 +5,7 @@ import 'package:pringgosadventure/theme.dart';
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget Header() {
+    Widget header() {
       return Container(
         margin: EdgeInsets.only(top: 30),
         child: Column(
@@ -30,7 +30,7 @@ class SignInPage extends StatelessWidget {
       );
     }
 
-    Widget EmailInput() {
+    Widget emailInput() {
       return Container(
         margin: EdgeInsets.only(
           top: 70,
@@ -82,7 +82,7 @@ class SignInPage extends StatelessWidget {
       );
     }
 
-    Widget PasswordInput() {
+    Widget passwordInput() {
       return Container(
         margin: EdgeInsets.only(
           top: 20,
@@ -135,7 +135,7 @@ class SignInPage extends StatelessWidget {
       );
     }
 
-    Widget SigninButton() {
+    Widget signinButton() {
       return Container(
         height: 50,
         width: double.infinity,
@@ -161,7 +161,7 @@ class SignInPage extends StatelessWidget {
       );
     }
 
-    Widget Footer() {
+    Widget footer() {
       return Container(
         margin: EdgeInsets.only(bottom: 30),
         child: Row(
@@ -202,12 +202,12 @@ class SignInPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Header(),
-                EmailInput(),
-                PasswordInput(),
-                SigninButton(),
+                header(),
+                emailInput(),
+                passwordInput(),
+                signinButton(),
                 Spacer(),
-                Footer(),
+                footer(),
               ],
             ),
           ),

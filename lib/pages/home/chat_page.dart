@@ -21,7 +21,7 @@ class ChatPage extends StatelessWidget {
         automaticallyImplyLeading: false,
       );
     }
-    Widget emtyChat(){
+    Widget emptyChat(){
       return Expanded(
         child: Container(
           color: backgroundColor3,
