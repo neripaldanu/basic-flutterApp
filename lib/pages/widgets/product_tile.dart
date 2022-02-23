@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pringgosadventure/theme.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

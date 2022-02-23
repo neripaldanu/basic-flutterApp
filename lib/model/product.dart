@@ -6,10 +6,10 @@ class ProductItem{
 
 
   ProductItem({
-    required this.namaProduct,
-    required this.category,
-    required this.price,
-    required this.imageAssets,
+     this.namaProduct,
+     this.category,
+     this.price,
+     this.imageAssets,
 
 
 

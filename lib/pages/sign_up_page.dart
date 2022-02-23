@@ -1,10 +1,53 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pringgosadventure/pages/widgets/loading_button.dart';
+import 'package:pringgosadventure/providers/auth_provider.dart';
 import 'package:pringgosadventure/theme.dart';
+import 'package:provider/provider.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController nameController = TextEditingController(text: '');
+
+  TextEditingController emailController = TextEditingController(text: '');
+
+  TextEditingController usernameController = TextEditingController(text: '');
+
+  TextEditingController passwordController = TextEditingController(text: '');
+
+  bool isLoading=false;
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
+      if (await authProvider.register(
+          name: nameController.text,
+          email: emailController.text,
+          username: usernameController.text,
+          password: passwordController.text)) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'gagal register',
+              textAlign: TextAlign.center,
+            )));
+      }
+      setState(() {
+        isLoading=false;
+      });
+    }
+
     Widget Header() {
       return Container(
         margin: EdgeInsets.only(top: 30),
@@ -67,6 +110,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextFormField(
+                      controller: nameController,
                       style: primaryTextStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your Full Name',
@@ -119,6 +163,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextFormField(
+                      controller: usernameController,
                       style: primaryTextStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your Username',
@@ -171,6 +216,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextFormField(
+                      controller: emailController,
                       style: primaryTextStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Your Email Address',
@@ -223,6 +269,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                     Expanded(
                         child: TextFormField(
+                      controller: passwordController,
                       style: primaryTextStyle,
                       obscureText: true,
                       decoration: InputDecoration.collapsed(
@@ -245,9 +292,7 @@ class SignUpPage extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.only(top: 20),
         child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
+          onPressed: handleSignUp,
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(
@@ -300,23 +345,21 @@ class SignUpPage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: defaultMargin,
-            ),
-
-            child: ListView(
-              children: <Widget>[
-                Header(),
-                FullNameInput(),
-                UsernameInput(),
-                EmailInput(),
-                PasswordInput(),
-                SignupButton(),
-                Spacer(),
-                Footer(),
-              ],
-            )
-          ),
+              margin: EdgeInsets.symmetric(
+                horizontal: defaultMargin,
+              ),
+              child: ListView(
+                children: <Widget>[
+                  Header(),
+                  FullNameInput(),
+                  UsernameInput(),
+                  EmailInput(),
+                  PasswordInput(),
+                  isLoading? LoadingButton():SignupButton(),
+                  Spacer(),
+                  Footer(),
+                ],
+              )),
         ));
   }
 }

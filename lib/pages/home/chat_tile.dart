@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pringgosadventure/theme.dart';
 
 class ChatTile extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
