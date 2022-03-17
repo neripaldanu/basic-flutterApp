@@ -23,7 +23,7 @@ class ProductService {
 
       return products;
     } else {
-      throw Exception('gagal get product');
+      throw Exception('gagal mendapatkan product');
     }
   }
 }

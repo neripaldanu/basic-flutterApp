@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pringgosadventure/models/product_model.dart';
+import 'package:pringgosadventure/pages/product_page.dart';
 import 'package:pringgosadventure/theme.dart';
 
 class ProductCard extends StatelessWidget {
+  final ProductModel product;
+  ProductCard(this.product);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, '/product');
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductPage(product)));
       },
       child: Container(
           width: 215,
@@ -24,8 +29,8 @@ class ProductCard extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              Image.asset(
-                'assets/image_tenda_1-removebg-preview.png',
+              Image.network(
+                product.galleries[0].url,
                 width: 215,
                 height: 150,
                 fit: BoxFit.cover,
@@ -38,7 +43,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Tenda',
+                      product.category.name,
                       style: secondaryTextStyle.copyWith(
                         fontSize: 12,
                       ),
@@ -47,18 +52,19 @@ class ProductCard extends StatelessWidget {
                       height: 6,
                     ),
                     Text(
-                      'Eiger 3238 Riding Explorer Beta',
+                      product.name,
                       style: blackColorStyle.copyWith(
                         fontSize: 18,
                         fontWeight: semiBold,
                       ),
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                     SizedBox(
                       height: 6,
                     ),
                     Text(
-                      'Rp. 500.000',
+                      '\$${product.price}',
                       style: priceTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

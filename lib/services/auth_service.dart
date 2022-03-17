@@ -29,7 +29,7 @@ class AuthService {
 
       return user;
     } else {
-      throw Exception('gagal login');
+      throw Exception('gagal register');
     }
   }
 

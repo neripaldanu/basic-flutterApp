@@ -5,6 +5,7 @@ import 'package:pringgosadventure/pages/home/widgets.dart';
 import 'package:pringgosadventure/pages/widgets/product_card.dart';
 import 'package:pringgosadventure/pages/widgets/product_tile.dart';
 import 'package:pringgosadventure/providers/auth_provider.dart';
+import 'package:pringgosadventure/providers/product_provider.dart';
 import 'package:pringgosadventure/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     Widget header() {
       return Container(
@@ -239,13 +241,8 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Row(
-                children: [
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
-
-                ],
-              )
+                children: productProvider.products.map((product) => ProductCard(product),).toList()
+              ),
             ],
           ),
         ),
@@ -275,15 +272,7 @@ class HomePage extends StatelessWidget {
           top: 14,
         ),
         child: Column(
-          children: [
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-
-          ],
+          children: productProvider.products.map((product) => ProductTile(product),).toList()
         ),
       );
     }

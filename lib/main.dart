@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pringgosadventure/pages/home/cart_page.dart';
 import 'package:pringgosadventure/pages/detail_chat_page.dart';
 import 'package:pringgosadventure/pages/home/main_page.dart';
 import 'package:pringgosadventure/pages/product_page.dart';
@@ -7,6 +8,7 @@ import 'package:pringgosadventure/pages/sign_up_page.dart';
 import 'package:pringgosadventure/pages/splash_page.dart';
 import 'package:pringgosadventure/providers/auth_provider.dart';
 import 'package:pringgosadventure/providers/product_provider.dart';
+import 'package:pringgosadventure/providers/wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => ProductProvider()),
+        ChangeNotifierProvider(create: (context)=> WishlistProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -28,7 +31,8 @@ class MyApp extends StatelessWidget {
           '/sign-up': (context) => SignUpPage(),
           '/home': (context) => MainPage(),
           '/detail-chat': (context) => DetailChatPage(),
-          '/product': (context) => ProductPage(),
+          '/cart': (context) => CartPage(),
+
         },
       ),
     );

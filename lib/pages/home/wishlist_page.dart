@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pringgosadventure/pages/widgets/wishlist_cart.dart';
+import 'package:pringgosadventure/providers/wishlist_provider.dart';
 import 'package:pringgosadventure/theme.dart';
+import 'package:provider/provider.dart';
 
 class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -60,7 +65,9 @@ class WishlistPage extends StatelessWidget {
                         horizontal: 24,
                         vertical: 10,
                       )),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+                  },
                   child: Text(
                     'Explore Store',
                     style: primaryTextStyle.copyWith(
@@ -83,12 +90,7 @@ class WishlistPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: defaultMargin,
               ),
-              children: [
-                WishlistCart(),
-                WishlistCart(),
-                WishlistCart(),
-
-              ],
+              children: wishlistProvider.wishlist.map((product) => WishlistCart(product)).toList()
             ),
 
       )
@@ -99,7 +101,7 @@ class WishlistPage extends StatelessWidget {
       children: [
         header(),
         // emptyWishList(),
-        content()
+       wishlistProvider.wishlist.length == 0 ? emptyWishList(): content()
 
       ],
     );
